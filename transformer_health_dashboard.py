@@ -37,7 +37,7 @@ def validate(df: pd.DataFrame) -> list[str]:
 
 
 # ----------------------------------------------------------------------------
-# SIDEBAR — data source + editable thresholds (this is the "editable" part)
+# SIDEBAR — data source 
 # ----------------------------------------------------------------------------
 st.sidebar.title("⚡ Controls")
 
@@ -74,7 +74,7 @@ elif st.session_state.raw_df is None:
             "load": 65 + rng.normal(0, 8, n),
         })
 
-# Downloadable CSV template for connecting real sensor data later
+#  CSV file for connecting real sensor data later
 template_df = pd.DataFrame({
     "timestamp": pd.date_range("2026-09-25 10:00", periods=5, freq="5min"),
     "transformer_id": ["TXF-001"] * 5,
@@ -106,7 +106,7 @@ st.sidebar.subheader("4. Prediction")
 horizon = st.sidebar.slider("Forecast horizon (readings ahead)", 1, 50, 12)
 
 # ----------------------------------------------------------------------------
-# EDITABLE DATA TABLE
+# DATA TABLE
 # ----------------------------------------------------------------------------
 with st.expander("📝 Edit raw sensor data (add rows, fix values, then Apply)"):
     tf_mask = st.session_state.raw_df["transformer_id"] == selected_tid
